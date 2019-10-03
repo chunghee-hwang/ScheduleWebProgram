@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -24,9 +25,12 @@ public class MainServlet extends HttpServlet {
 		response.setContentType("application/json");
 
 		TodoDao dao = TodoDao.getInstance();
-		List<TodoDto> todos = dao.getTodos("TODO");
-		List<TodoDto> doings = dao.getTodos("DOING");
-		List<TodoDto> dones = dao.getTodos("DONE");
+		
+		List<TodoDto> list = dao.getTodos();
+		List<TodoDto> todos = list.stream().filter(dto-> dto.getType().equals("TODO")).collect(Collectors.toList());
+		List<TodoDto> doings = list.stream().filter(dto-> dto.getType().equals("DOING")).collect(Collectors.toList());
+		List<TodoDto> dones = list.stream().filter(dto-> dto.getType().equals("DONE")).collect(Collectors.toList());
+		
 		List<List<TodoDto>> plans = new ArrayList<>(Arrays.asList(todos, doings, dones));
 
 		request.setAttribute("plans", plans);

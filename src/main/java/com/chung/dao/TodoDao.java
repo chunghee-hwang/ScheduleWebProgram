@@ -47,11 +47,10 @@ public class TodoDao {
 		return insertCount;
 	}
 
-	public List<TodoDto> getTodos(String type) {
+	public List<TodoDto> getTodos() {
 		List<TodoDto> list = new ArrayList<>();
 		try (Connection conn = DriverManager.getConnection(dburl, dbUser, dbpasswd);
 				PreparedStatement ps = conn.prepareStatement(TodoDaoSqls.GET_TODOS)) {
-			ps.setString(1, type);
 			try (ResultSet rs = ps.executeQuery()) {
 				while (rs.next()) {
 					TodoDto dto = new TodoDto();
