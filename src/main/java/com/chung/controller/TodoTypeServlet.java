@@ -18,6 +18,7 @@ public class TodoTypeServlet extends HttpServlet {
 	
 	//클라이언트에서 AJAX로 스케줄의 type을 바꾸라는 요청이 왔을 경우 처리 함수
 	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
 		String json = request.getReader().readLine();
 		ObjectMapper mapper = new ObjectMapper();
 		TodoDto todoDto = mapper.readValue(json, TodoDto.class);
