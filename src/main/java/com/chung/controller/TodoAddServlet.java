@@ -48,9 +48,9 @@ public class TodoAddServlet extends HttpServlet {
 
 		if (insertCount != 1) {
 			sendMessage(response, "스케줄 입력을 실패하였습니다.");
-		} else {
-			response.sendRedirect("/todo/main");
 		}
+		response.sendRedirect("/todo/main");
+		
 
 	}
 
