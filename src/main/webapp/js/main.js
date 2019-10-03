@@ -36,7 +36,7 @@ function sortCardByRegisterDate(list_view) {
 	for (var i = 1; i < children.length; i++) {
 		nodeList.push(children[i]);
 	}
-	console.log(nodeList);
+
 	for (var i = 0; i < nodeList.length; i++) {
 		list_view.removeChild(nodeList[i]);
 	}
