@@ -75,13 +75,3 @@ function onClickRightButton(button, id) {
 		"type" : type
 	});
 }
-
-window.addEventListener("load", function() {
-
-	//사용자가 이 페이지에 MainServlet에서 포워딩을 통해서 들어오지 않았다면 MainServlet으로 이동시킴
-	var plans = "${requestScope.plans}";
-	if (!plans) {
-		alert("잘못된 접근입니다.");
-		window.location.href = "/todo/main";
-	}
-});

@@ -1,6 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
+<!-- 사용자가 이 페이지에 MainServlet에서 포워딩을 통해서 들어오지 않았다면 MainServlet으로 이동시킴 -->
+<c:if test="${requestScope.plans == null}">
+	<c:redirect url="/main" />
+</c:if>
+
 <!DOCTYPE html>
 <html>
 
@@ -46,7 +52,7 @@
 	</div>
 
 	<script type="text/javascript" src="/todo/js/main.js"></script>
-
+	
 </body>
 
 </html>
