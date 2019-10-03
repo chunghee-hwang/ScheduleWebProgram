@@ -1,0 +1,97 @@
+body {
+	width: 100%;
+	height: 100%;
+	text-align: center;
+}
+
+.rotated_text {
+	margin: 0;
+	position: absolute;
+	top: 100px;
+	left: 10%;
+	transform: rotate(-30deg);
+	color: rgba(0, 47, 255, 0.568);
+}
+
+.link {
+	text-decoration: none;
+	font-weight: bold;
+}
+
+.new_todo_button {
+	display: table;
+	position: absolute;
+	text-align: center;
+	right: 10%;
+	top: 100px;
+	position: absolute;
+}
+
+.new_todo_anchor {
+	display: table-cell;
+	width: 200px;
+	height: 50px;
+	color: white;
+	background-color: rgba(136, 0, 128, 0.514);
+	font-weight: bold;
+	vertical-align: middle;
+}
+
+.new_todo_anchor:active {
+	background-color: rgba(88, 0, 82, 0.514);
+}
+
+.plan_table {
+	margin-top: 150px;
+	text-align: center;
+}
+
+.plan_table>.list_view {
+	display: inline-block;
+	vertical-align: top;
+	margin: 5px;
+}
+
+.card_head_container {
+	display: table;
+	width: 400px;
+	height: 80px;
+	text-align: left;
+	background-color: rgba(0, 102, 255, 0.514);
+}
+
+.card_head_type {
+	display: table-cell;
+	vertical-align: middle;
+	padding: 10px;
+	color: white;
+}
+
+.card_entry_container {
+	position: relative;
+	width: 400px;
+	height: 150px;
+	text-align: justify;
+	background-color: rgba(146, 190, 255, 0.514);
+	margin-top: 10px;
+}
+
+/*글자 너비 초과 시 줄임 표시 : https://webdir.tistory.com/483 */
+.card_entry_title, .card_entry_content {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	margin: 0;
+	padding: 10px;
+}
+
+.to_right_button {
+	margin: 0;
+	position: absolute;
+	right: 5px;
+}
+
+.button_image {
+	width: 40px;
+	height: 40px;
+}

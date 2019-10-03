@@ -1,0 +1,62 @@
+.title {
+	text-align: center;
+	margin: 80px;
+}
+
+.title_input {
+	width: 500px;
+}
+
+.title_input, .name_input, .seq_input {
+	text-align: justify;
+	padding: 5px;
+	font-size: large;
+}
+
+.question_label {
+	margin: 50px 0;
+}
+
+.seq_input {
+	margin-right: 50px;
+}
+
+.input_container {
+	margin: 30px 185px;
+}
+
+.input_container>.question_label {
+	text-align: justify;
+	font-size: medium;
+	font-weight: bold;
+}
+
+.button {
+	width: 130px;
+	cursor: pointer;
+	border: none;
+	padding: 11px;
+	color: white;
+	background-color: rgba(136, 0, 128, 0.514);
+	font-weight: bold;
+	margin-right: 10px;
+}
+
+.button:active {
+	background-color: rgba(82, 0, 76, 0.514);
+}
+
+.previous_button {
+	color: black;
+	background-color: white;
+	border: solid black 1px;
+	border-radius: 2px;
+}
+
+.previous_button:active {
+	background-color: rgba(218, 218, 218, 0.651);
+}
+
+.space {
+	margin-left: 50px;
+}

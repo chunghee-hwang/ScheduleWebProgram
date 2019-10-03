@@ -13,8 +13,16 @@ public class TodoDao {
 	private static String dburl = "jdbc:mysql://localhost:3306/tododb?useSSL=false";
 	private static String dbUser = "connectuser";
 	private static String dbpasswd = "connect123!@#";
+	private static TodoDao instance;
 
-	public TodoDao() {
+	public static TodoDao getInstance() {
+		if (instance == null) {
+			instance = new TodoDao();
+		}
+		return instance;
+	}
+
+	private TodoDao() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
@@ -23,7 +31,6 @@ public class TodoDao {
 	}
 
 	public int addTodo(TodoDto todoDto) {
-		ResultSet rs = null;
 		int insertCount = 0;
 		try (Connection conn = DriverManager.getConnection(dburl, dbUser, dbpasswd);
 				PreparedStatement ps = conn.prepareStatement(TodoDaoSqls.ADD_TODO)) {

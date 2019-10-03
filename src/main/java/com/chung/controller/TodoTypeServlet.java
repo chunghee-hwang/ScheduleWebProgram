@@ -13,22 +13,19 @@ import com.chung.dao.TodoDao;
 import com.chung.dto.TodoDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-@WebServlet("/toright")
+@WebServlet("/type")
 public class TodoTypeServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-
-
 	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String json = request.getReader().readLine();
 		ObjectMapper mapper = new ObjectMapper();
 		TodoDto todoDto = mapper.readValue(json, TodoDto.class);
-		
-		TodoDao dao = new TodoDao();
+
+		TodoDao dao = TodoDao.getInstance();
 		response.setCharacterEncoding("utf-8");
-		response.setContentType("application/json");
+		response.setContentType("text/plain");
 		PrintWriter out = response.getWriter();
-		
-		switch(todoDto.getType()) {
+
+		switch (todoDto.getType()) {
 		case "TODO":
 			todoDto.setType("DOING");
 			break;
@@ -38,19 +35,19 @@ public class TodoTypeServlet extends HttpServlet {
 		default:
 			todoDto = null;
 		}
-		if(todoDto == null) {
+		if (todoDto == null) {
 			out.print("fail");
 			out.close();
 			return;
 		}
 		int updateCount = dao.updateTodo(todoDto);
-		
-		if(updateCount == 1) {
+
+		if (updateCount == 1) {
 			out.print("success");
-		}else {
+		} else {
 			out.print("fail");
 		}
-		
+
 		out.close();
 	}
 
