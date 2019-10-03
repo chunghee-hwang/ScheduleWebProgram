@@ -16,6 +16,7 @@ import com.chung.dto.TodoDto;
 @WebServlet("/schedule")
 public class TodoAddServlet extends HttpServlet {
 
+	//클라이언트에게 메시지를 뿌리는 함수
 	private void sendMessage(HttpServletResponse response, String msg) throws IOException {
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("text/html");
@@ -24,6 +25,7 @@ public class TodoAddServlet extends HttpServlet {
 		out.close();
 	}
 
+	//새로운 스케줄을 등록 요청했을 시 처리 함수
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		TodoDao dao = TodoDao.getInstance();

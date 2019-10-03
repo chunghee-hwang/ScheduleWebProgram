@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/scheduler")
 public class TodoFormServlet extends HttpServlet {
 
+	//todoForm.jsp로 포워딩해주는 함수
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/views/todoForm.jsp");
 		dispatcher.forward(request, response);

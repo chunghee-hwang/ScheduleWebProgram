@@ -18,6 +18,7 @@ import com.chung.dto.TodoDto;
 @WebServlet("/main")
 public class MainServlet extends HttpServlet {
 
+	//main.jsp에 필요 정보를 담아서 포워딩해주는 함수
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("application/json");
