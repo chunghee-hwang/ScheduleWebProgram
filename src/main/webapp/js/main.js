@@ -20,7 +20,7 @@ function sortCardByRegisterDate(list_view) {
 	for (var i = 0; i < nodeList.length; i++) {
 		list_view.removeChild(nodeList[i]);
 	}
-	nodeList.sort(compareEntries);
+	nodeList.sort(this.compareEntries);
 	for (var i = 0; i < nodeList.length; i++) {
 		list_view.appendChild(nodeList[i]);
 	}
@@ -47,7 +47,7 @@ function onClickRightButton(button, schedule_id, schedule_type_elem) {
 		"type" : schedule_type
 	};
 	var thisObject = this;
-	requestAjax("PUT", "/todo/type", function() {
+	this.requestAjax("PUT", "/todo/type", function() {
 		if (this.status == 200 && this.responseText.trim() == "success") {
 			thisObject.moveCardToNext(button, schedule_type_elem);
 		} else {
@@ -99,5 +99,5 @@ function requestAjax(method, url, loadListener, object) {
 }
 
 window.addEventListener("DOMContentLoaded", function() {
-	addRightButtonClickListener();
+	this.addRightButtonClickListener();
 });
