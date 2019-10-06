@@ -30,6 +30,13 @@
 			<artifactId>jackson-databind</artifactId>
 			<version>2.9.4</version>
 		</dependency>
+		<!-- StringUtils (공백문자 또는 null을 모두 처리하는 Apache Commons Lang 라이브러리) -->
+		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+		<dependency>
+		    <groupId>org.apache.commons</groupId>
+		    <artifactId>commons-lang3</artifactId>
+		    <version>3.6</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<finalName>todo</finalName>

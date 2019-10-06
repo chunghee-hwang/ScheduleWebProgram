@@ -28,17 +28,9 @@ public class TodoTypeServlet extends HttpServlet {
 		response.setContentType("text/plain");
 		PrintWriter out = response.getWriter();
 
-		switch (todoDto.getType()) {
-		case "TODO":
-			todoDto.setType("DOING");
-			break;
-		case "DOING":
-			todoDto.setType("DONE");
-			break;
-		default:
-			todoDto = null;
-		}
-		if (todoDto == null) {
+		changeTodoToNextType(todoDto);
+		
+		if (todoDto.getType() == null) {
 			out.print("fail");
 			out.close();
 			return;
@@ -52,6 +44,20 @@ public class TodoTypeServlet extends HttpServlet {
 		}
 
 		out.close();
+	}
+	
+	private void changeTodoToNextType(TodoDto todoDto) 
+	{
+		switch (todoDto.getType()) {
+		case "TODO":
+			todoDto.setType("DOING");
+			break;
+		case "DOING":
+			todoDto.setType("DONE");
+			break;
+		default:
+			todoDto.setType(null);
+		}
 	}
 
 }
