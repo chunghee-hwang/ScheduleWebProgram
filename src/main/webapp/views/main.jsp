@@ -40,10 +40,11 @@
 							등록날짜: <span class="reg_date">${fn:substring(regDate,0,19) }</span>, ${entry.name}, 우선순위 ${entry.sequence}
 						</div>
 						<c:if test="${entry.type ne 'DONE'}">
-							<a class="to_right_button" href="javascript:void(0);"
-								onclick='onClickRightButton(this, "${entry.id}")'> 
+							<a class="to_right_button" href="javascript:void(0);"> 
 								<img class="button_image" src="imgs/right_arrow.png" alt="오른쪽으로 이동">
 							</a>
+							<span class="schedule_id hidden">${entry.id}</span>
+							<span class="schedule_type hidden">${entry.type}</span>
 						</c:if>
 					</div>
 				</c:forEach>
