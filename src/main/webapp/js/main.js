@@ -2,10 +2,8 @@
 
 //카드의 엔트리들을 등록일시 순으로 정렬하기위한 Compare Function
 function compareEntries(node1, node2) {
-	var reg_date = node1.querySelector(".reg_date").innerText.split(" ")
-			.join("T");
-	var reg_date2 = node2.querySelector(".reg_date").innerText.split(" ").join(
-			"T");
+	var reg_date = node1.querySelector(".reg_date").innerText.split(" ").join("T");
+	var reg_date2 = node2.querySelector(".reg_date").innerText.split(" ").join("T");
 	reg_date = Date.parse(reg_date);
 	reg_date2 = Date.parse(reg_date2);
 	return reg_date - reg_date2;
@@ -31,49 +29,56 @@ function sortCardByRegisterDate(list_view) {
 // 오른족 화살표 버튼을 눌렀을 때의 리스너들을 등록하는 함수
 function addRightButtonClickListener() {
 	var to_right_buttons = document.querySelectorAll(".to_right_button");
-	Array.prototype.forEach
-			.call(to_right_buttons,
-					function(button) {
-						var schedule_id = button.parentElement
-								.querySelector(".schedule_id").innerText;
-						var schedule_type_elem = button.parentElement
-								.querySelector(".schedule_type")
-						button.addEventListener("click", function() {
-							this.onClickRightButton(button, schedule_id, schedule_type_elem);
-						}.bind(this));
-					});
+	Array.prototype.forEach.call(to_right_buttons, function(button) {
+		var schedule_id = button.parentElement.querySelector(".schedule_id").innerText;
+		var schedule_type_elem = button.parentElement.querySelector(".schedule_type")
+		button.addEventListener("click", function() {
+			this.onClickRightButton(button, schedule_id, schedule_type_elem);
+		}.bind(this));
+	});
 }
 
 // 엔트리 안에있는 오른쪽 화살표를 눌렀을 경우 처리되는 내용을 담은 함수
 function onClickRightButton(button, schedule_id, schedule_type_elem) {
-	var card_entry_container = button.parentElement;
-	var card_head_container = card_entry_container.parentElement.children[0];
-	var list_views = document.querySelectorAll(".list_view");
 	var schedule_type = schedule_type_elem.innerText;
-	requestAjax("PUT", "/todo/type", function() {
-		if (this.status == 200 && this.responseText.trim() == "success") {
-			switch (schedule_type) {
-			case "TODO":
-				list_views[1].appendChild(card_entry_container);
-				sortCardByRegisterDate(list_views[1]);
-				schedule_type_elem.innerText = "DOING";
-				break;
-			case "DOING":
-				list_views[2].appendChild(card_entry_container);
-				sortCardByRegisterDate(list_views[2]);
-				button.style.display = "none";
-				schedule_type_elem.innerText = "DONE";
-				break;
-			}
-		} else {
-			alert("상태 변경을 실패하였습니다.")
-		}
-
-	}, {
+	var data = 
+	{
 		"id" : schedule_id,
 		"type" : schedule_type
-	});
+	};
+	var thisObject = this;
+	requestAjax("PUT", "/todo/type", function() {
+		if (this.status == 200 && this.responseText.trim() == "success") {
+			thisObject.moveCardToNext(button, schedule_type_elem);
+		} else {
+			alert("상태 변경을 실패하였습니다.");
+		}
+	}, data);
 }
+
+// DOM을 조작하여 카드를 오른쪽으로 옮기는 함수
+function moveCardToNext(button, schedule_type_elem){
+	var list_views = document.querySelectorAll(".list_view");
+	var schedule_type = schedule_type_elem.innerText;
+	var card_entry_container = button.parentElement;
+	
+	switch (schedule_type) {
+	case "TODO":
+		list_views[1].appendChild(card_entry_container);
+		this.sortCardByRegisterDate(list_views[1]);
+		schedule_type_elem.innerText = "DOING";
+		break;
+	case "DOING":
+		list_views[2].appendChild(card_entry_container);
+		this.sortCardByRegisterDate(list_views[2]);
+		button.style.display = "none";
+		schedule_type_elem.innerText = "DONE";
+		break;
+	default:
+		alert("상태 변경을 실패하였습니다.");
+	}
+}
+
 
 // 서버에 AJAX 요청을 하는 함수
 // method : GET, POST, PUT...
