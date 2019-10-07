@@ -32,13 +32,15 @@ public class TodoAddServlet extends HttpServlet {
 	//StringUtils Labrary : https://commons.apache.org/proper/commons-lang/apidocs/org/apache/commons/lang3/StringUtils.html
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		final int maxTitleLength = 24;
+		
 		TodoDao dao = TodoDao.getInstance();
 		TodoDto dto = new TodoDto();
 		request.setCharacterEncoding("utf-8");
 		String title = request.getParameter("title");
 		String name = request.getParameter("name");
 		String seq = request.getParameter("seq");
-		if(StringUtils.isBlank(title) || StringUtils.isBlank(name) || StringUtils.isBlank(seq))
+		if(StringUtils.isBlank(title) || StringUtils.isBlank(name) || StringUtils.isBlank(seq) || title.length() > maxTitleLength)
 		{
 			sendErrorMessage(response, "입력 값에 문제가 있습니다.");
 			return;
