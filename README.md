@@ -1,2 +1,3 @@
-# TodoWebProgram
- 계획표 웹 프로그램
+# ScheduleWebProgram
+ 
+Web Servlet을 사용한 스케줄 등록 프로그램
